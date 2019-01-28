@@ -64,7 +64,7 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: AddInforCheckInCheckOutViewDelegate {
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didAddInputView inputView: InputCheckInCheckOutView) {
+    func addInforCheckInCheckOutViewDidAddInputView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView) {
         guard let heightAddInforViewConstraint = self.heightAddInforViewConstraint else {
             return
         }
@@ -73,7 +73,7 @@ extension ViewController: AddInforCheckInCheckOutViewDelegate {
         updateLayout()
     }
     
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didDeleteInputView inputView: InputCheckInCheckOutView) {
+    func addInforCheckInCheckOutViewDidDeleteInputView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, inputView: InputCheckInCheckOutView) {
         guard let heightAddInforViewConstraint = self.heightAddInforViewConstraint else {
             return
         }
@@ -81,8 +81,8 @@ extension ViewController: AddInforCheckInCheckOutViewDelegate {
         
         updateLayout()
     }
-
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didSelectTime inputView: InputCheckInCheckOutView, isSelected: Bool) {
+    
+    func addInforCheckInCheckOutViewDidSelectTime(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, isSelected: Bool) {
         guard let heightAddInforViewConstraint = self.heightAddInforViewConstraint else {
             return
         }
@@ -93,7 +93,7 @@ extension ViewController: AddInforCheckInCheckOutViewDelegate {
         updateLayout()
     }
     
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didSelectTime inputView: InputCheckInCheckOutView, didChangeHeightComment height: CGFloat) {
+    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didChangeHeightComment height: CGFloat) {
         guard let heightAddInforViewConstraint = self.heightAddInforViewConstraint else {
             return
         }

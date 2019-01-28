@@ -9,10 +9,10 @@
 import UIKit
 
 protocol AddInforCheckInCheckOutViewDelegate {
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didAddInputView inputView: InputCheckInCheckOutView)
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didDeleteInputView inputView: InputCheckInCheckOutView)
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didSelectTime inputView: InputCheckInCheckOutView, isSelected: Bool)
-    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didSelectTime inputView: InputCheckInCheckOutView, didChangeHeightComment height: CGFloat)
+    func addInforCheckInCheckOutViewDidAddInputView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView)
+    func addInforCheckInCheckOutViewDidDeleteInputView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, inputView: InputCheckInCheckOutView)
+    func addInforCheckInCheckOutViewDidSelectTime(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, isSelected: Bool)
+    func addInforCheckInCheckOutView(_ addInforCheckInCheckOutView: AddInforCheckInCheckOutView, didChangeHeightComment height: CGFloat)
 }
 
 
@@ -71,18 +71,16 @@ class AddInforCheckInCheckOutView: UIView {
             return
         }
         
-        let inputView = createInputView()
-        self.delegate?.addInforCheckInCheckOutView(self, didAddInputView: inputView)
+        createInputView()
+        self.delegate?.addInforCheckInCheckOutViewDidAddInputView(self)
     }
     
     // MARK: - Handler
-    fileprivate func createInputView() -> InputCheckInCheckOutView {
+    fileprivate func createInputView() {
         let inputView = InputCheckInCheckOutView(frame: .zero)
         inputView.delegate = self
         
         addConstraintInputView(inputView)
-        
-        return inputView
     }
     
     fileprivate func addConstraintInputView(_ inputView: InputCheckInCheckOutView) {
@@ -152,12 +150,12 @@ class AddInforCheckInCheckOutView: UIView {
 
 extension AddInforCheckInCheckOutView: InputCheckInCheckOutViewDelegate {
     func inputCheckInCheckOutViewDidRemove(_ inputCheckInCheckOutView: InputCheckInCheckOutView) {
-        self.delegate?.addInforCheckInCheckOutView(self, didDeleteInputView: inputCheckInCheckOutView)
+        self.delegate?.addInforCheckInCheckOutViewDidDeleteInputView(self, inputView: inputCheckInCheckOutView)
         self.removeInputView(inputCheckInCheckOutView)
     }
     
     func inputCheckInCheckOutView(_ inputCheckInCheckOutView: InputCheckInCheckOutView, didSelectTime isSelected: Bool) {
-        self.delegate?.addInforCheckInCheckOutView(self, didSelectTime: inputCheckInCheckOutView, isSelected: isSelected)
+        self.delegate?.addInforCheckInCheckOutViewDidSelectTime(self, isSelected: isSelected)
 
         guard let heightInputViewConstraint = inputViews[inputCheckInCheckOutView] else {
             return
@@ -187,7 +185,7 @@ extension AddInforCheckInCheckOutView: InputCheckInCheckOutViewDelegate {
         heightInputViewConstraint.constant = newHeight
         updateLayout()
         
-        self.delegate?.addInforCheckInCheckOutView(self, didSelectTime: inputCheckInCheckOutView, didChangeHeightComment: newHeight - oldHeight)
+        self.delegate?.addInforCheckInCheckOutView(self, didChangeHeightComment: newHeight - oldHeight)
     }
     
     fileprivate func removeInputView(_ inputView: InputCheckInCheckOutView) {
