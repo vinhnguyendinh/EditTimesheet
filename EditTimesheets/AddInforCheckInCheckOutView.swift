@@ -87,9 +87,9 @@ class AddInforCheckInCheckOutView: UIView {
     
     fileprivate func addConstraintInputView(_ inputView: InputCheckInCheckOutView) {
         scrollView.addSubview(inputView)
-        
         inputView.translatesAutoresizingMaskIntoConstraints = false
         
+        // Add constraints
         inputView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         inputView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
@@ -103,7 +103,10 @@ class AddInforCheckInCheckOutView: UIView {
             inputView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         }
         
+        // Update previous input view
         self.previousInputView = inputView
+        
+        // Update height constraint for input view
         inputViews[inputView] = heightInputViewConstraint
     }
     
@@ -170,10 +173,18 @@ extension AddInforCheckInCheckOutView: InputCheckInCheckOutViewDelegate {
         guard let heightInputViewConstraint = inputViews[inputCheckInCheckOutView] else {
             return
         }
-        let oldHeight = heightInputViewConstraint.constant
-        let newHeight = height > HEIGHT_INPUT_VIEW_DEFAULT ? height + 12 : HEIGHT_INPUT_VIEW_DEFAULT
-        heightInputViewConstraint.constant = newHeight
         
+        let oldHeight = heightInputViewConstraint.constant
+        var newHeight: CGFloat!
+        
+        if oldHeight > HEIGHT_TIME_PICKER {
+            newHeight = height > HEIGHT_INPUT_VIEW_DEFAULT ? height + 12 : HEIGHT_INPUT_VIEW_DEFAULT
+            newHeight = newHeight + HEIGHT_TIME_PICKER
+        } else {
+            newHeight = height > HEIGHT_INPUT_VIEW_DEFAULT ? height + 12 : HEIGHT_INPUT_VIEW_DEFAULT
+        }
+    
+        heightInputViewConstraint.constant = newHeight
         updateLayout()
         
         self.delegate?.addInforCheckInCheckOutView(self, didSelectTime: inputCheckInCheckOutView, didChangeHeightComment: newHeight - oldHeight)
