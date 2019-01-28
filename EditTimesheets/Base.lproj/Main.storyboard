@@ -25,6 +25,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Taw-86-Kl9" secondAttribute="bottom" id="0ON-y5-Q2B"/>
+                            <constraint firstItem="Taw-86-Kl9" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="Mas-FM-SWE"/>
+                            <constraint firstItem="Taw-86-Kl9" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="P3b-WS-5XL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Taw-86-Kl9" secondAttribute="trailing" id="ams-G0-g9d"/>
                             <constraint firstItem="Taw-86-Kl9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ebc-4S-bo4"/>
                             <constraint firstItem="Taw-86-Kl9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mAY-Pa-Uqk"/>

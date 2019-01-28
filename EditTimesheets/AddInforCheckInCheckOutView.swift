@@ -80,19 +80,18 @@ class AddInforCheckInCheckOutView: UIView {
         let inputView = InputCheckInCheckOutView(frame: .zero)
         inputView.delegate = self
         
-        let heightInputViewConstraint = addInputView(inputView)
-        inputViews[inputView] = heightInputViewConstraint
+        addConstraintInputView(inputView)
         
         return inputView
     }
     
-    fileprivate func addInputView(_ inputView: InputCheckInCheckOutView) -> NSLayoutConstraint {
+    fileprivate func addConstraintInputView(_ inputView: InputCheckInCheckOutView) {
         scrollView.addSubview(inputView)
         
         inputView.translatesAutoresizingMaskIntoConstraints = false
         
-        inputView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
-        inputView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        inputView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        inputView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
         let heightInputView: CGFloat = inputView.frame.height > 0 ? inputView.frame.height:  HEIGHT_INPUT_VIEW_DEFAULT
         let heightInputViewConstraint = inputView.heightAnchor.constraint(equalToConstant: heightInputView)
@@ -105,23 +104,33 @@ class AddInforCheckInCheckOutView: UIView {
         }
         
         self.previousInputView = inputView
-        
-        return heightInputViewConstraint
+        inputViews[inputView] = heightInputViewConstraint
     }
     
-    func addInputViewsToScrollView() {
-        removeAllViewInScrollView()
+    func layoutInputViews() {
+        clears()
         
         self.inputViews.keys.forEach { (inputView) in
-            let _  = addInputView(inputView)
+            addConstraintInputView(inputView)
+        }
+
+        if let previousInputView = self.previousInputView {
+            previousInputView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         }
     }
     
-    fileprivate func removeAllViewInScrollView() {
+    fileprivate func clears() {
         previousInputView = nil
         
-        for view in self.scrollView.subviews {
+        for view in scrollView.subviews {
             view.removeFromSuperview()
+            
+            for constraint in view.constraints {
+                guard let firstView = constraint.firstItem as? UIView else { continue }
+                if firstView == view && constraint.firstAttribute == .height {
+                    NSLayoutConstraint.deactivate([constraint])
+                }
+            }
         }
     }
     
@@ -172,7 +181,7 @@ extension AddInforCheckInCheckOutView: InputCheckInCheckOutViewDelegate {
     
     fileprivate func removeInputView(_ inputView: InputCheckInCheckOutView) {
         self.inputViews.removeValue(forKey: inputView)
-        addInputViewsToScrollView()
+        layoutInputViews()
     }
 }
 

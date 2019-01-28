@@ -42,21 +42,13 @@ class ViewController: UIViewController {
         addInforView?.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         heightAddInforViewConstraint = addInforView?.heightAnchor.constraint(equalToConstant: 176)
         heightAddInforViewConstraint?.isActive = true
+        
+        addInforView?.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
     
     // MARK: - UI Action
     
     // MARK: - Handler
-    fileprivate func updateContentSizeScrollView() {
-        var height: CGFloat = 0
-
-        if let heightAddInforView = self.heightAddInforViewConstraint?.constant {
-            height = height + heightAddInforView
-        }
-
-        scrollView.contentSize.height = height
-    }
-    
     fileprivate func updateLayout() {
         UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
@@ -78,7 +70,6 @@ extension ViewController: AddInforCheckInCheckOutViewDelegate {
         }
         heightAddInforViewConstraint.constant = heightAddInforViewConstraint.constant + HEIGHT_INPUT_VIEW_DEFAULT
         
-        updateContentSizeScrollView()
         updateLayout()
     }
     
@@ -88,7 +79,6 @@ extension ViewController: AddInforCheckInCheckOutViewDelegate {
         }
         heightAddInforViewConstraint.constant = heightAddInforViewConstraint.constant - inputView.frame.height
         
-        updateContentSizeScrollView()
         updateLayout()
     }
 
@@ -100,7 +90,6 @@ extension ViewController: AddInforCheckInCheckOutViewDelegate {
         let newHeight = isSelected ? oldHeight + HEIGHT_TIME_PICKER : oldHeight - HEIGHT_TIME_PICKER
         heightAddInforViewConstraint.constant = newHeight
         
-        updateContentSizeScrollView()
         updateLayout()
     }
     
@@ -110,7 +99,6 @@ extension ViewController: AddInforCheckInCheckOutViewDelegate {
         }
         heightAddInforViewConstraint.constant = heightAddInforViewConstraint.constant + height
         
-        updateContentSizeScrollView()
         updateLayout()
     }
 }
