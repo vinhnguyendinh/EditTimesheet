@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="confirmButton" destination="q95-9a-NFP" id="k8a-eE-XHM"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="du9-zQ-Lgg"/>
+                <outlet property="heightButtonConfirmContainerViewConstraint" destination="ikK-cC-rCf" id="mkD-fH-XcW"/>
                 <outlet property="scrollView" destination="Azc-wu-ZRN" id="4E2-Dq-7Tw"/>
             </connections>
         </placeholder>
@@ -70,11 +71,11 @@
                                 <constraint firstAttribute="height" constant="76" id="cXl-ko-OkD"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcL-c2-R8W">
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HcL-c2-R8W">
                             <rect key="frame" x="0.0" y="0.0" width="568" height="56"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c41-G3-Q6r">
-                                    <rect key="frame" x="24" y="13" width="60" height="30"/>
+                                    <rect key="frame" x="24" y="0.0" width="60" height="56"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="8YV-KP-mIY"/>
@@ -89,14 +90,15 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="c41-G3-Q6r" firstAttribute="centerY" secondItem="HcL-c2-R8W" secondAttribute="centerY" id="oBR-Kc-3on"/>
+                                <constraint firstItem="c41-G3-Q6r" firstAttribute="top" secondItem="HcL-c2-R8W" secondAttribute="top" id="XR1-Vn-o0j"/>
+                                <constraint firstAttribute="height" constant="56" id="ikK-cC-rCf"/>
+                                <constraint firstAttribute="bottom" secondItem="c41-G3-Q6r" secondAttribute="bottom" id="kDL-Iy-EBp"/>
                                 <constraint firstItem="c41-G3-Q6r" firstAttribute="leading" secondItem="HcL-c2-R8W" secondAttribute="leading" constant="24" id="yef-qR-xjD"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="132" id="8Vv-oE-k9t"/>
                         <constraint firstItem="yI3-XU-rMy" firstAttribute="top" secondItem="HcL-c2-R8W" secondAttribute="bottom" id="Dkk-Ad-4tu"/>
                         <constraint firstItem="HcL-c2-R8W" firstAttribute="top" secondItem="lel-FW-BqI" secondAttribute="top" id="GiS-VV-2Uo"/>
                         <constraint firstItem="yI3-XU-rMy" firstAttribute="leading" secondItem="lel-FW-BqI" secondAttribute="leading" id="HTF-GG-Bah"/>

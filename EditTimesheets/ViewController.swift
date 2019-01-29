@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum EditTimesheetState {
+    case enable
+    case disable
+}
+
 class ViewController: UIViewController {
     // MARK: - UI Property
     @IBOutlet weak var scrollView: UIScrollView!
@@ -17,6 +22,7 @@ class ViewController: UIViewController {
     var heightAddInforViewConstraint: NSLayoutConstraint?
     
     // MARK: - Property
+    var state: EditTimesheetState = .enable
     
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -34,6 +40,8 @@ class ViewController: UIViewController {
         addInforView = AddInforCheckInCheckOutView(frame: .zero)
         addInforView?.translatesAutoresizingMaskIntoConstraints = false
         addInforView?.delegate = self
+        
+        addInforView?.state = self.state
         
         scrollView.addSubview(addInforView!)
 

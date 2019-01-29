@@ -24,6 +24,7 @@ class AddInforCheckInCheckOutView: UIView {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet var contentView: UIView!
     
+    @IBOutlet weak var heightButtonConfirmContainerViewConstraint: NSLayoutConstraint!
     // MARK: - Property
     var delegate: AddInforCheckInCheckOutViewDelegate?
     
@@ -31,6 +32,12 @@ class AddInforCheckInCheckOutView: UIView {
     var inputViews: [InputCheckInCheckOutView: NSLayoutConstraint] = [:]
     
     var previousInputView: InputCheckInCheckOutView?
+    
+    var state: EditTimesheetState = .enable {
+        didSet {
+            refreshUIState()
+        }
+    }
     
     // MARK: - Life cycle
     override init(frame: CGRect) {
@@ -54,11 +61,30 @@ class AddInforCheckInCheckOutView: UIView {
     }
     
     fileprivate func initViews() {
-        self.setupScrollView()
+        setupScrollView()
+        setupButton()
     }
     
     fileprivate func setupScrollView() {
         scrollView.isScrollEnabled = false
+    }
+    
+    fileprivate func setupButton() {
+        confirmButton.layer.cornerRadius = 6
+        confirmButton.layer.masksToBounds = true
+    }
+    
+    fileprivate func setupEditConfirmButton() {
+        confirmButton.backgroundColor = UIColor(hex: 0xEE8B23)
+        confirmButton.setTitleColor(.white, for: .normal)
+        confirmButton.layer.borderWidth = 0
+    }
+    
+    fileprivate func setupDisableConfirmButton() {
+        confirmButton.backgroundColor = .white
+        confirmButton.setTitleColor(UIColor(hex: 0xEE8B23), for: .normal)
+        confirmButton.layer.borderWidth = 1
+        confirmButton.layer.borderColor = UIColor(hex: 0xEE8B23).cgColor
     }
     
     // MARK: - UI Action
@@ -79,6 +105,7 @@ class AddInforCheckInCheckOutView: UIView {
     fileprivate func createInputView() {
         let inputView = InputCheckInCheckOutView(frame: .zero)
         inputView.delegate = self
+        inputView.state = state
         
         addConstraintInputView(inputView)
     }
@@ -141,6 +168,22 @@ class AddInforCheckInCheckOutView: UIView {
         }, completion: nil)
     }
     
+    fileprivate func refreshUIState() {
+        switch state {
+        case .enable:
+            heightButtonConfirmContainerViewConstraint.constant = 56
+            setupEditConfirmButton()
+            break
+        case .disable:
+            heightButtonConfirmContainerViewConstraint.constant = 0
+            setupDisableConfirmButton()
+            break
+        }
+        
+        inputViews.keys.forEach({ $0.state = self.state })
+        updateLayout()
+    }
+    
     // MARK: - Override Function
     
     // MARK: - Notifications
@@ -175,7 +218,7 @@ extension AddInforCheckInCheckOutView: InputCheckInCheckOutViewDelegate {
         let oldHeight = heightInputViewConstraint.constant
         var newHeight: CGFloat!
         
-        if oldHeight > HEIGHT_TIME_PICKER {
+        if inputCheckInCheckOutView.isSelectingTime {
             newHeight = height > HEIGHT_INPUT_VIEW_DEFAULT ? height + 12 : HEIGHT_INPUT_VIEW_DEFAULT
             newHeight = newHeight + HEIGHT_TIME_PICKER
         } else {

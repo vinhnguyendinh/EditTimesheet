@@ -33,6 +33,12 @@ class InputCheckInCheckOutView: UIView {
     
     var delegate: InputCheckInCheckOutViewDelegate?
     
+    var state: EditTimesheetState = .enable {
+        didSet {
+            refreshUIState()
+        }
+    }
+    
     // MARK: - Life cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,13 +61,11 @@ class InputCheckInCheckOutView: UIView {
     }
     
     fileprivate func initViews() {
-        setupCommentTextView()
         setupTypeRequestLabel()
-        setupTimeLabel()
         setupTimePicker()
     }
     
-    fileprivate func setupTimeLabel() {
+    fileprivate func setupEditTimeLabel() {
         timeLabel.layer.cornerRadius = 8
         timeLabel.layer.borderWidth = 1
         timeLabel.layer.masksToBounds = true
@@ -74,6 +78,11 @@ class InputCheckInCheckOutView: UIView {
         updateTime(date: Date())
     }
     
+    fileprivate func setupDisableTimeLabel() {
+        timeLabel.layer.borderWidth = 0
+        timeLabel.isUserInteractionEnabled = false
+    }
+    
     fileprivate func setupTypeRequestLabel() {
         typeRequestLabel.text = "出勤"
         typeRequestLabel.backgroundColor = UIColor(hex: 0xF2F2F2)
@@ -82,7 +91,7 @@ class InputCheckInCheckOutView: UIView {
         widthTypeRequestLabelConstraint.constant = typeRequestLabel.intrinsicContentSize.width + 10
     }
     
-    fileprivate func setupCommentTextView() {
+    fileprivate func setupEditCommentTextView() {
         commentTextView.placeholder = "コメント・備考"
         commentTextView.placeholderColor = UIColor.init(hex: 0xA6A6A6)
         commentTextView.layer.cornerRadius = 8
@@ -90,6 +99,13 @@ class InputCheckInCheckOutView: UIView {
         commentTextView.layer.masksToBounds = true
         commentTextView.layer.borderColor = UIColor(hex: 0xA6A6A6).cgColor
         commentTextView.delegate = self
+        commentTextView.isEditable = true
+    }
+    
+    fileprivate func setupDisableCommentTextView() {
+        commentTextView.placeholder = ""
+        commentTextView.layer.borderWidth = 0
+        commentTextView.isEditable = false
     }
     
     fileprivate func setupTimePicker() {
@@ -135,7 +151,18 @@ class InputCheckInCheckOutView: UIView {
         }
     }
     
-    
+    fileprivate func refreshUIState() {
+        switch state {
+        case .enable:
+            setupEditCommentTextView()
+            setupEditTimeLabel()
+            break
+        case .disable:
+            setupDisableCommentTextView()
+            setupDisableTimeLabel()
+            break
+        }
+    }
     // MARK: - Override Function
     
     // MARK: - Notifications
