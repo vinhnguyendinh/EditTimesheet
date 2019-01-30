@@ -20,6 +20,15 @@
 		230B81F521FB0F9C007BAA87 /* InputCheckInCheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 230B81F421FB0F9C007BAA87 /* InputCheckInCheckOutView.swift */; };
 		230B81F921FB15D4007BAA87 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 230B81F721FB15D4007BAA87 /* UITextView+Placeholder.m */; };
 		234846E421FEB4320069F345 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234846E321FEB4320069F345 /* ColorExtensions.swift */; };
+		23F654A92200060D00A7EF89 /* ListRequestAttendanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F654A82200060D00A7EF89 /* ListRequestAttendanceView.swift */; };
+		23F654AB2200061B00A7EF89 /* ListRequestAttendanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F654AA2200061B00A7EF89 /* ListRequestAttendanceView.xib */; };
+		23F654AE220027BD00A7EF89 /* RequestAttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F654AC220027BD00A7EF89 /* RequestAttendanceCell.swift */; };
+		23F654AF220027BD00A7EF89 /* RequestAttendanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F654AD220027BD00A7EF89 /* RequestAttendanceCell.xib */; };
+		23F654B222002D0500A7EF89 /* HistoryCheckingLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F654B122002D0500A7EF89 /* HistoryCheckingLog.swift */; };
+		23F654B422002DA600A7EF89 /* CheckingLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F654B322002DA600A7EF89 /* CheckingLog.swift */; };
+		23F654B622002F9300A7EF89 /* RequestEditAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F654B522002F9300A7EF89 /* RequestEditAttendance.swift */; };
+		23F654B92200371D00A7EF89 /* AddRequestAttendanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F654B72200371D00A7EF89 /* AddRequestAttendanceCell.swift */; };
+		23F654BA2200371D00A7EF89 /* AddRequestAttendanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23F654B82200371D00A7EF89 /* AddRequestAttendanceCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +70,15 @@
 		230B81F721FB15D4007BAA87 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
 		230B81F821FB15D4007BAA87 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
 		234846E321FEB4320069F345 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		23F654A82200060D00A7EF89 /* ListRequestAttendanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRequestAttendanceView.swift; sourceTree = "<group>"; };
+		23F654AA2200061B00A7EF89 /* ListRequestAttendanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListRequestAttendanceView.xib; sourceTree = "<group>"; };
+		23F654AC220027BD00A7EF89 /* RequestAttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestAttendanceCell.swift; sourceTree = "<group>"; };
+		23F654AD220027BD00A7EF89 /* RequestAttendanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestAttendanceCell.xib; sourceTree = "<group>"; };
+		23F654B122002D0500A7EF89 /* HistoryCheckingLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCheckingLog.swift; sourceTree = "<group>"; };
+		23F654B322002DA600A7EF89 /* CheckingLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckingLog.swift; sourceTree = "<group>"; };
+		23F654B522002F9300A7EF89 /* RequestEditAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEditAttendance.swift; sourceTree = "<group>"; };
+		23F654B72200371D00A7EF89 /* AddRequestAttendanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRequestAttendanceCell.swift; sourceTree = "<group>"; };
+		23F654B82200371D00A7EF89 /* AddRequestAttendanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddRequestAttendanceCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,20 +129,16 @@
 		230B81BF21FB0D05007BAA87 /* EditTimesheets */ = {
 			isa = PBXGroup;
 			children = (
+				23F654B022002CE700A7EF89 /* Model */,
+				23F654A7220004E200A7EF89 /* Lib */,
+				23F654A6220004D800A7EF89 /* Controller */,
+				23F654A5220004B000A7EF89 /* CustomView */,
 				230B81C021FB0D05007BAA87 /* AppDelegate.swift */,
 				230B81F621FB15D3007BAA87 /* EditTimesheets-Bridging-Header.h */,
-				230B81F821FB15D4007BAA87 /* UITextView+Placeholder.h */,
-				230B81F721FB15D4007BAA87 /* UITextView+Placeholder.m */,
 				230B81CC21FB0D07007BAA87 /* Info.plist */,
-				230B81EE21FB0DCD007BAA87 /* AddInforCheckInCheckOutView.swift */,
-				230B81F021FB0DD8007BAA87 /* AddInforCheckInCheckOutView.xib */,
-				230B81F421FB0F9C007BAA87 /* InputCheckInCheckOutView.swift */,
-				230B81F221FB0F89007BAA87 /* InputCheckInCheckOutView.xib */,
-				230B81C221FB0D05007BAA87 /* ViewController.swift */,
 				230B81C721FB0D07007BAA87 /* Assets.xcassets */,
 				230B81C921FB0D07007BAA87 /* LaunchScreen.storyboard */,
 				230B81C421FB0D05007BAA87 /* Main.storyboard */,
-				234846E321FEB4320069F345 /* ColorExtensions.swift */,
 			);
 			path = EditTimesheets;
 			sourceTree = "<group>";
@@ -145,6 +159,67 @@
 				230B81E221FB0D07007BAA87 /* Info.plist */,
 			);
 			path = EditTimesheetsUITests;
+			sourceTree = "<group>";
+		};
+		23F654A5220004B000A7EF89 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				23F654BC2200372500A7EF89 /* Cell */,
+				23F654BB2200372100A7EF89 /* View */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		23F654A6220004D800A7EF89 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				230B81C221FB0D05007BAA87 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		23F654A7220004E200A7EF89 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				234846E321FEB4320069F345 /* ColorExtensions.swift */,
+				230B81F821FB15D4007BAA87 /* UITextView+Placeholder.h */,
+				230B81F721FB15D4007BAA87 /* UITextView+Placeholder.m */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		23F654B022002CE700A7EF89 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				23F654B122002D0500A7EF89 /* HistoryCheckingLog.swift */,
+				23F654B322002DA600A7EF89 /* CheckingLog.swift */,
+				23F654B522002F9300A7EF89 /* RequestEditAttendance.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		23F654BB2200372100A7EF89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				230B81EE21FB0DCD007BAA87 /* AddInforCheckInCheckOutView.swift */,
+				230B81F021FB0DD8007BAA87 /* AddInforCheckInCheckOutView.xib */,
+				230B81F421FB0F9C007BAA87 /* InputCheckInCheckOutView.swift */,
+				230B81F221FB0F89007BAA87 /* InputCheckInCheckOutView.xib */,
+				23F654A82200060D00A7EF89 /* ListRequestAttendanceView.swift */,
+				23F654AA2200061B00A7EF89 /* ListRequestAttendanceView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		23F654BC2200372500A7EF89 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				23F654AC220027BD00A7EF89 /* RequestAttendanceCell.swift */,
+				23F654AD220027BD00A7EF89 /* RequestAttendanceCell.xib */,
+				23F654B72200371D00A7EF89 /* AddRequestAttendanceCell.swift */,
+				23F654B82200371D00A7EF89 /* AddRequestAttendanceCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +329,11 @@
 			files = (
 				230B81CB21FB0D07007BAA87 /* LaunchScreen.storyboard in Resources */,
 				230B81F321FB0F89007BAA87 /* InputCheckInCheckOutView.xib in Resources */,
+				23F654AB2200061B00A7EF89 /* ListRequestAttendanceView.xib in Resources */,
+				23F654AF220027BD00A7EF89 /* RequestAttendanceCell.xib in Resources */,
 				230B81F121FB0DD8007BAA87 /* AddInforCheckInCheckOutView.xib in Resources */,
 				230B81C821FB0D07007BAA87 /* Assets.xcassets in Resources */,
+				23F654BA2200371D00A7EF89 /* AddRequestAttendanceCell.xib in Resources */,
 				230B81C621FB0D05007BAA87 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +364,13 @@
 				230B81C121FB0D05007BAA87 /* AppDelegate.swift in Sources */,
 				230B81F921FB15D4007BAA87 /* UITextView+Placeholder.m in Sources */,
 				230B81F521FB0F9C007BAA87 /* InputCheckInCheckOutView.swift in Sources */,
+				23F654A92200060D00A7EF89 /* ListRequestAttendanceView.swift in Sources */,
+				23F654B92200371D00A7EF89 /* AddRequestAttendanceCell.swift in Sources */,
+				23F654AE220027BD00A7EF89 /* RequestAttendanceCell.swift in Sources */,
 				234846E421FEB4320069F345 /* ColorExtensions.swift in Sources */,
+				23F654B622002F9300A7EF89 /* RequestEditAttendance.swift in Sources */,
+				23F654B222002D0500A7EF89 /* HistoryCheckingLog.swift in Sources */,
+				23F654B422002DA600A7EF89 /* CheckingLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

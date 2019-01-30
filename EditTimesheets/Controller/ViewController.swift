@@ -18,8 +18,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var addInforView: AddInforCheckInCheckOutView?
+    var listRequestView: ListRequestAttendanceView?
     
     var heightAddInforViewConstraint: NSLayoutConstraint?
+    var heightListRequestViewConstraint: NSLayoutConstraint?
+
     
     // MARK: - Property
     var state: EditTimesheetState = .enable
@@ -34,6 +37,8 @@ class ViewController: UIViewController {
     // MARK: - Config
     func initViews() {
         setupAddInforView()
+        setupListRequestView()
+        setupConstraints()
     }
     
     fileprivate func setupAddInforView() {
@@ -42,16 +47,58 @@ class ViewController: UIViewController {
         addInforView?.delegate = self
         
         addInforView?.state = self.state
+    }
+    
+    fileprivate func setupListRequestView() {
+        listRequestView = ListRequestAttendanceView(frame: .zero)
+        listRequestView?.didChangeHeightContent = { [weak self] height in
+            guard let `self` = self else {
+                return
+            }
+            
+            self.heightListRequestViewConstraint?.constant = height
+            self.updateLayout()
+        }
         
+        listRequestView?.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    fileprivate func setupConstraints() {
+        // Add Infor View
         scrollView.addSubview(addInforView!)
-
+        
         addInforView?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         addInforView?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         addInforView?.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        heightAddInforViewConstraint = addInforView?.heightAnchor.constraint(equalToConstant: 176)
+        
+        addInforView?.setNeedsLayout()
+        addInforView?.layoutIfNeeded()
+        var height = addInforView?.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height ?? 0
+        var frame = addInforView?.frame ?? .zero
+        frame.size.height = height
+        addInforView?.frame = frame
+        
+        heightAddInforViewConstraint = addInforView?.heightAnchor.constraint(equalToConstant: height)
         heightAddInforViewConstraint?.isActive = true
         
-        addInforView?.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        // List Request View
+        scrollView.addSubview(listRequestView!)
+        
+        listRequestView?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        listRequestView?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        listRequestView?.topAnchor.constraint(equalTo: (addInforView?.bottomAnchor)!).isActive = true
+        
+        listRequestView?.setNeedsLayout()
+        listRequestView?.layoutIfNeeded()
+        height = listRequestView?.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height ?? 0
+        frame = listRequestView?.frame ?? .zero
+        frame.size.height = height
+        listRequestView?.frame = frame
+        
+        heightListRequestViewConstraint = listRequestView?.heightAnchor.constraint(equalToConstant: height)
+        heightListRequestViewConstraint?.isActive = true
+        
+        listRequestView?.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
     
     // MARK: - UI Action
